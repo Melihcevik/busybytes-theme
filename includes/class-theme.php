@@ -50,25 +50,25 @@ class Theme {
 
 	public function bb_admin_notice_missing_elementor_plugin() {
 		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-		$message = '<strong>'. self::THEME_NAME .'</strong> requires <strong>Elementor</strong> to be installed and activated.';
+		$message = '<strong>'. self::THEME_NAME . '</strong> ' . __( 'requires <strong>Elementor</strong> to be installed and activated.', 'bb-theme' );
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 	}
 
 	public function bb_admin_notice_minimum_elementor_version() {
 		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-		$message = '<strong>'. self::THEME_NAME .'</strong> requires <strong>Elementor</strong> version '. self::MINIMUM_ELEMENTOR_VERSION .' or greater.';
+		$message = '<strong>'. self::THEME_NAME . '</strong> ' . __( 'requires <strong>Elementor</strong> version '. self::MINIMUM_ELEMENTOR_VERSION .' or greater.', 'bb-theme' );
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 	}
 
 	public function bb_admin_notice_minimum_php_version() {
 		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-		$message = '<strong>'. self::THEME_NAME .'</strong> requires <strong>PHP</strong> version '. self::MINIMUM_PHP_VERSION .' or greater.';
+		$message = '<strong>'. self::THEME_NAME . '</strong> ' . __( 'requires <strong>PHP</strong> version '. self::MINIMUM_PHP_VERSION .' or greater.', 'bb-theme' );
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 	}
 
 	public function bb_admin_notice_missing_child_theme() {
 		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-		$message = '<strong>'. self::THEME_NAME .'</strong> requires a <strong>child theme</strong> to function properly. You should never edit a theme directly!';
+		$message = '<strong>'. self::THEME_NAME . '</strong> ' . __( 'requires a <strong>child theme</strong> to function properly. You should never edit a theme directly!', 'bb-theme' );
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 	}
 
