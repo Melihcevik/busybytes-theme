@@ -1,5 +1,4 @@
 <?php
-
 /**
 *  Security settings and hooks
 */
