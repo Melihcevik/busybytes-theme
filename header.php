@@ -1,7 +1,11 @@
 <?php
 /**
- * The header for our theme
- */
+* The header for our theme
+*
+* @package BusyBytes
+* @subpackage BusyBytes Theme
+* @since BusyBytes Theme 1.0
+*/
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 

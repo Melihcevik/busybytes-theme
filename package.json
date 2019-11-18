@@ -1,0 +1,24 @@
+{
+  "name": "busybytes-theme",
+  "version": "1.0.0",
+  "description": "BusyBytes' official WordPress base theme.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BusyBytes/busybytes-theme.git"
+  },
+  "keywords": [
+    "wordpress-starter-theme",
+    "elementor",
+    "busybytes"
+  ],
+  "author": "BusyBytes GmbH",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/BusyBytes/busybytes-theme/issues"
+  },
+  "homepage": "https://github.com/BusyBytes/busybytes-theme#readme"
+}

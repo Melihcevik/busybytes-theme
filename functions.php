@@ -9,7 +9,7 @@ require_once( 'includes/security.php' );
 add_action( 'after_setup_theme', function() {
 
 	// instantiate the theme's main class
-    include_once( 'includes/class-theme.php' );
+    require_once( 'classes/class-theme.php' );
     
 	// disable gutenberg editor
     add_filter( 'use_block_editor_for_post', '__return_false', 10 );

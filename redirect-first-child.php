@@ -7,6 +7,8 @@
 * @since BusyBytes Theme 1.0
 */
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 if ( have_posts() ) {
   while ( have_posts() ) {
     the_post();
