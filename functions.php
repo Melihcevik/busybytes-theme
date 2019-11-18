@@ -7,14 +7,18 @@ require_once( 'includes/security.php' );
 
 // theme's initial setup
 add_action( 'after_setup_theme', function() {
+
 	// instantiate the theme's main class
-	include_once( 'includes/class-theme.php' );
+    include_once( 'includes/class-theme.php' );
+    
 	// disable gutenberg editor
-	add_filter( 'use_block_editor_for_post', '__return_false', 10 );
+    add_filter( 'use_block_editor_for_post', '__return_false', 10 );
+    
 	// register standard nav menus
-	register_nav_menu( 'primary', 'Primary Menu' );
-	register_nav_menu( 'legal', 'Legal Menu' );
-	register_nav_menu( 'language', 'Language Menu' );
+	register_nav_menu( 'bb-primary', 'Primary Menu' );
+	register_nav_menu( 'bb-legal', 'Legal Menu' );
+    register_nav_menu( 'bb-language', 'Language Menu' );
+    
 });
 
 // remove default wordpress' default actions that are a securtiy threat or inconvinient
@@ -55,7 +59,7 @@ add_action( 'wp_enqueue_scripts', function() {
 });
 
 // add svg as an item for uploading
-add_filter( 'upload_mimes', function($mimes) {
+add_filter( 'upload_mimes', function( $mimes ) {
 	$mimes['svg'] = 'image/svg+xml';
     return $mimes;
 });
