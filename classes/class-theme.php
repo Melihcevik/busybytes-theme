@@ -19,16 +19,26 @@ if ( ! class_exists( 'Theme' ) ) {
 		public const MINIMUM_ELEMENTOR_VERSION = '2.5.0';
 		public const MINIMUM_PHP_VERSION = '7.0';
 
+		// this class gets instantiated at "after-setup-theme" hook
 		public function __construct() {
 			$this->bb_theme_activate();
 		}
 
 		private function bb_theme_activate() {
+
+			// load the text domain (translations)
+			$this->bb_load_textdomain();
+
 			// check for compatibility and dependencies, store the result
-			$is_compatible = $this->bb_theme_check_compatibility();
-			if ( $is_compatible ) {
-				require_once( 'class-settings.php' );
-			}
+			$is_theme_compatible = $this->bb_theme_check_compatibility();
+
+			// load the settings class (if compatible)
+			if ( $is_theme_compatible ) require_once( 'class-settings.php' );
+
+		}
+
+		private function bb_load_textdomain() {
+    		load_theme_textdomain( 'bb-theme', get_template_directory() . '/languages' );
 		}
 
 		private function bb_theme_check_compatibility() {
