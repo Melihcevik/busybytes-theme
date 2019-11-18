@@ -1,6 +1,6 @@
 <?php
 /**
-*  Security settings and hooks
+*  Security hooks
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
