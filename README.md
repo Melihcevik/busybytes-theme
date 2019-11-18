@@ -1,2 +1,3 @@
-# busybytes-theme
-BusyBytes' official WordPress theme
+# BusyBytes's Theme
+
+The official BusyBytes' WordPress theme. Super simple base-theme made to work perfectly with [Elementor.](https://github.com/elementor/elementor)
