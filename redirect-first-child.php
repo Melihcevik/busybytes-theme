@@ -1,13 +1,17 @@
 <?php
-/*
-  Template Name: Redirect To First Child
+/**
+* Template Name: Redirect To First Child
+*
+* @package BusyBytes
+* @subpackage BusyBytes Theme
+* @since BusyBytes Theme 1.0
 */
 
 if ( have_posts() ) {
   while ( have_posts() ) {
     the_post();
-    $pagekids = get_pages( "child_of=" . $post->ID . "&sort_column=menu_order" );
-    $firstchild = $pagekids[0];
-    wp_redirect( get_permalink( $firstchild->ID ) );
+    $children = get_pages( "child_of=" . $post->ID . "&sort_column=menu_order" );
+    $first = $children[0];
+    wp_redirect( get_permalink( $first->ID ) );
   }
 }
