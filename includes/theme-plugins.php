@@ -8,13 +8,11 @@
 
 require_once get_template_directory() . '/lib/TGM-Plugin-Activation/class-tgm-plugin-activation.php' ;
 
-add_action( 'tgmpa_register', 'bb_register_required_plugins' );
-
 /**
  * Register the required plugins for this theme.
  * This function is hooked into `tgmpa_register`, which is fired on the WP `init` action on priority 10.
  */
-function bb_register_required_plugins() {
+add_action( 'tgmpa_register', function () {
 	/*
 	 * Array of plugin arrays. Required keys are name and slug.
 	 * If the source is NOT from the .org repo, then source is also required.
@@ -73,8 +71,7 @@ function bb_register_required_plugins() {
 	);
 
 	/*
-	 * Array of configuration settings. Amend each line as needed.
-	 * Only uncomment the strings in the config array if you want to customize the strings.
+	 * Array of configuration settings.
 	 */
 	$config = array(
 		'id'           => 'bb-theme',              // Unique ID for hashing notices for multiple instances of TGMPA.
@@ -88,4 +85,5 @@ function bb_register_required_plugins() {
 	);
 
 	tgmpa( $plugins, $config );
-}
+
+});
