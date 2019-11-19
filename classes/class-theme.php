@@ -4,7 +4,7 @@
 *
 * @package BusyBytes
 * @subpackage BusyBytes Theme
-* @since BusyBytes Theme 1.0
+* @since 1.0.0
 */
 
 namespace BusyBytes;
@@ -21,10 +21,6 @@ if ( ! class_exists( 'Theme' ) ) {
 
 		// this class gets instantiated at "after-setup-theme" hook
 		public function __construct() {
-			$this->bb_theme_activate();
-		}
-
-		private function bb_theme_activate() {
 
 			// load the text domain (translations)
 			$this->bb_load_textdomain();
@@ -32,8 +28,13 @@ if ( ! class_exists( 'Theme' ) ) {
 			// check for compatibility and dependencies, store the result
 			$is_theme_compatible = $this->bb_theme_check_compatibility();
 
-			// load the settings class (if compatible)
-			if ( $is_theme_compatible ) require_once( 'class-settings.php' );
+			if ( $is_theme_compatible ) {
+				// fire up the tgm-plugin-activation class
+				// (checks for recommended and needed plugins)
+				require_once( get_template_directory() . '/includes/theme-plugins.php' );
+				// load the settings class [disabled for now]
+				// require_once( 'class-settings.php' ); 
+			}
 
 		}
 
@@ -56,7 +57,7 @@ if ( ! class_exists( 'Theme' ) ) {
 			if ( ! version_compare( ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
 				add_action( 'admin_notices', function() {
 					if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-					$message = '<strong>'. self::THEME_NAME . '</strong> ' . __( 'requires <strong>Elementor</strong> version '. self::MINIMUM_ELEMENTOR_VERSION .' or greater.', 'bb-theme' );
+					$message = '<strong>' . self::THEME_NAME . '</strong> ' . __( 'requires <strong>Elementor</strong> version ' . self::MINIMUM_ELEMENTOR_VERSION . ' or greater.', 'bb-theme' );
 					printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 				});
 				return false;
@@ -66,7 +67,7 @@ if ( ! class_exists( 'Theme' ) ) {
 			if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
 				add_action( 'admin_notices', function() {
 					if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-					$message = '<strong>'. self::THEME_NAME . '</strong> ' . __( 'requires <strong>PHP</strong> version '. self::MINIMUM_PHP_VERSION .' or greater.', 'bb-theme' );
+					$message = '<strong>' . self::THEME_NAME . '</strong> ' . __( 'requires <strong>PHP</strong> version ' . self::MINIMUM_PHP_VERSION . ' or greater.', 'bb-theme' );
 					printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 				});
 				return false;
@@ -76,7 +77,7 @@ if ( ! class_exists( 'Theme' ) ) {
 			if ( self::THEME_NAME != wp_get_theme()->parent_theme ) {
 				add_action( 'admin_notices', function() {
 					if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
-					$message = '<strong>'. self::THEME_NAME . '</strong> ' . __( 'requires a <strong>child theme</strong> to function properly. You should never edit a theme directly!', 'bb-theme' );
+					$message = '<strong>' . self::THEME_NAME . '</strong> ' . __( 'requires a <strong>child theme</strong> to function properly. You should never edit a theme directly!', 'bb-theme' );
 					printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
 				});
 				return false;
