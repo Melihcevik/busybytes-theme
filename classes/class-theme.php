@@ -23,26 +23,21 @@ if ( ! class_exists( 'Theme' ) ) {
 		public function __construct() {
 
 			// load the text domain (translations)
-			$this->bb_load_textdomain();
+			load_theme_textdomain( 'bb-theme', get_template_directory() . '/languages' );
 
 			// check for compatibility and dependencies, store the result
 			$is_theme_compatible = $this->bb_theme_check_compatibility();
 
 			if ( $is_theme_compatible ) {
-				// fire up the tgm-plugin-activation class
-				// (checks for recommended and needed plugins)
-				require_once( get_template_directory() . '/includes/theme-plugins.php' );
-				// load the settings class
-				require_once( 'class-settings.php' ); 
+				require_once( get_template_directory() . '/includes/theme-plugins.php' ); // fire up the tgm-plugin-activation class
+				require_once( 'class-settings.php' ); 								      // load the settings class
+				$this->bb_theme_load_elementor(); 									      // load custom elementor widgets and hooks (for child theme)
 			}
 
 		}
 
-		private function bb_load_textdomain() {
-    		load_theme_textdomain( 'bb-theme', get_template_directory() . '/languages' );
-		}
-
 		private function bb_theme_check_compatibility() {
+
 			// check if Elementor is installed and activated
 			if ( ! did_action( 'elementor/loaded' ) ) {
 				add_action( 'admin_notices', function() {
@@ -84,6 +79,39 @@ if ( ! class_exists( 'Theme' ) ) {
 			}
 
 			return true;
+		}
+
+		private function bb_theme_load_elementor() {
+
+			// add elementor category for widget organization
+			add_action( 'elementor/elements/categories_registered', function ( $elements_manager ) {
+				$elements_manager->add_category(
+					'bb-widgets', array( 'title' => __( 'BusyBytes Widgets', 'bb-theme' ), 'icon' => 'fa fa-plug' )
+				);	
+			});
+
+			// register widget scripts (plus add hook)
+			add_action( 'elementor/frontend/after_register_scripts', function() {
+				do_action( 'bb_elementor_register_scripts' );
+			});
+
+			// register widgets
+			add_action( 'elementor/widgets/widgets_registered', array( $this, 'bb_elementor_register_widgets' ) );
+			
+		}
+
+		public function bb_elementor_register_widgets() {
+			$this->bb_elementor_include_widgets_files();
+			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ElementorWidgets\Button() );
+			\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new ElementorWidgets\Google_Maps() );
+			do_action( 'bb_elementor_register_widgets' );
+		}
+
+		private function bb_elementor_include_widgets_files() {
+			// busybytes' default widgets first
+			require_once( get_template_directory() . '/assets/elementor-widgets/widget_button.php' ); // Button
+			require_once( get_template_directory() . '/assets/elementor-widgets/widget_google_maps.php' ); // Google Maps
+			do_action( 'bb_elementor_include_widgets_files' );
 		}
 
 	}
