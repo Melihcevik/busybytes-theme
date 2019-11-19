@@ -32,8 +32,8 @@ if ( ! class_exists( 'Theme' ) ) {
 				// fire up the tgm-plugin-activation class
 				// (checks for recommended and needed plugins)
 				require_once( get_template_directory() . '/includes/theme-plugins.php' );
-				// load the settings class [disabled for now]
-				// require_once( 'class-settings.php' ); 
+				// load the settings class
+				require_once( 'class-settings.php' ); 
 			}
 
 		}
