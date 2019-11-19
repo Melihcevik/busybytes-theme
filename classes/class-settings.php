@@ -4,7 +4,7 @@
 *
 * @package BusyBytes
 * @subpackage BusyBytes Theme
-* @since BusyBytes Theme 1.0
+* @since 1.0.0
 */
 
 namespace BusyBytes;
