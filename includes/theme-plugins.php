@@ -6,7 +6,7 @@
  * @see http://tgmpluginactivation.com/configuration/ for detailed documentation.
  */
 
-require_once get_template_directory() . '/lib/TGM-Plugin-Activation/class-tgm-plugin-activation.php' ;
+require_once get_template_directory() . '/lib/tgm-plugin-activation/class-tgm-plugin-activation.php' ;
 
 /**
  * Register the required plugins for this theme.
@@ -76,6 +76,10 @@ add_action( 'tgmpa_register', function () {
 		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
 		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
 		'message'      => '',                      // Message to output right before the plugins table.
+		'strings'      =>
+			array(
+				'menu_title' => __( 'BusyBytes Plugins', 'bb-theme' ),
+			)
 	);
 
 	tgmpa( $plugins, $config );

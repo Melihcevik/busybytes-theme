@@ -19,9 +19,10 @@ if ( ! class_exists( 'Settings' ) ) {
 
 			// add the settings options page
 			add_action( 'admin_menu', function() {
-				add_options_page(
+				add_submenu_page(
+					'themes.php',
 					__( 'BusyBytes', 'bb-theme' ),
-					__( 'BusyBytes', 'bb-theme' ),
+					__( 'BusyBytes Theme', 'bb-theme' ),
 					'manage_options',
 					'bb-theme-settings',
 					function() {
@@ -29,8 +30,9 @@ if ( ! class_exists( 'Settings' ) ) {
 					}
 				);
 			});
-			
+
 		}
+
 	}
 	// instantiate this class
 	new Settings;
