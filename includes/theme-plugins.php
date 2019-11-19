@@ -38,12 +38,6 @@ add_action( 'tgmpa_register', function () {
 		),
 		
 		array(
-			'name'      => 'Elementor',
-			'slug'      => 'elementor',
-			'required'  => false,
-		),
-
-		array(
 			'name'        => 'WordPress SEO by Yoast',
 			'slug'        => 'wordpress-seo',
 			'is_callable' => 'wpseo_init',
